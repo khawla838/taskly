@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Taskly - Gestion des tâches</title>
+    <link rel="stylesheet" href="./contact.component.css">
+    <!-- Chargement des polices Font Awesome pour l'icône "Home" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style pour les alertes -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
+        }
+    </style>
+</head>
+<body>
+    <a href="../accueil/accueil.component.html" class="home-btn">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <div class="container">
+        <div class="contact-section">
+            <h2>Restons en contact !</h2>
+            <p class="intro-text">
+                Vous avez une question ou souhaitez en savoir
+                plus sur nos services ?<br><br>
+                N'hésitez pas à nous contacter via ce
+                formulaire. Notre équipe sera ravie
+                de vous répondre dans les plus brefs délais.
+            </p>
+
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        autocomplete="name"  
+                        placeholder="Nom" 
+                        required
+                        minlength="2"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        autocomplete="email" 
+                        placeholder="Adresse e-mail" 
+                        required
+                        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="subject" 
+                        name="subject" 
+                        autocomplete="off"  
+                        placeholder="Sujet du message" 
+                        required
+                        minlength="5"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        autocomplete="off" 
+                        placeholder="Message" 
+                        required
+                        minlength="10"
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" onclick="verfier()">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Configuration Firebase -->
+    <script>
+        // Configuration Firebase avec vérification
+        const firebaseConfig = {
+            apiKey: "AIzaSyAWMq-TgcnEj54dzpE_jNzhdGfSplkfNlE",
+            authDomain: "taskly-b1f68.firebaseapp.com",
+            databaseURL: "https://taskly-b1f68-default-rtdb.firebaseio.com",
+            projectId: "taskly-b1f68",
+            storageBucket: "taskly-b1f68.appspot.com",
+            messagingSenderId: "286328508207",
+            appId: "1:286328508207:web:87136fbe2e3b920b6d5bda"
+        }
+        // Vérification avant initialisation
+        if (typeof firebase === 'undefined') {
+            console.error("Erreur: Firebase n'est pas chargé !");
+        }
+    </script>
+
+    <!-- Chargement des scripts Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <!-- Initialisation Firebase -->
+    <script>
+        try {
+            // Initialisation unique
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+                console.log("Firebase initialisé avec succès");
+                
+                // Test de connexion
+                firebase.database().ref('.info/connected').on('value', snap => {
+                    if (snap.val() === true) {
+                        console.log("✅ Connecté à la base de données");
+                    }
+                });
+            }
+        } catch (error) {
+            console.error("Erreur d'initialisation Firebase:", error);
+        }
+    </script>
+
+    <!-- Votre script personnel -->
+    <script src="mail.js"></script>
+</body>
+</html>

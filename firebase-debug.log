@@ -1,0 +1,23 @@
+[debug] [2025-04-12T16:39:33.200Z] ----------------------------------------------------------------------
+[debug] [2025-04-12T16:39:33.208Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\DELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2025-04-12T16:39:33.209Z] CLI Version:   14.1.0
+[debug] [2025-04-12T16:39:33.210Z] Platform:      win32
+[debug] [2025-04-12T16:39:33.210Z] Node Version:  v22.14.0
+[debug] [2025-04-12T16:39:33.211Z] Time:          Sat Apr 12 2025 17:39:33 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2025-04-12T16:39:33.211Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-12T16:39:33.219Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[debug] [2025-04-12T16:39:34.952Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-04-12T16:39:34.952Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-04-13T00:48:34.746Z] ----------------------------------------------------------------------
+[debug] [2025-04-13T00:48:34.753Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\DELL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2025-04-13T00:48:34.754Z] CLI Version:   14.1.0
+[debug] [2025-04-13T00:48:34.755Z] Platform:      win32
+[debug] [2025-04-13T00:48:34.755Z] Node Version:  v22.14.0
+[debug] [2025-04-13T00:48:34.756Z] Time:          Sun Apr 13 2025 01:48:34 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2025-04-13T00:48:34.757Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 

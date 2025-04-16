@@ -1,0 +1,58 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TASKLY - Sign In</title>
+  <link rel="stylesheet" href="login.component.css">
+</head>
+
+<div class="background"></div>
+
+<div class="container">
+  <h1 class="logo">TASKLY</h1>
+  <div class="form-container">
+    <div class="form-header">
+      <i class="fas fa-user"></i>
+      <h2>SIGN IN</h2>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-container">
+          <!-- Fix ngModel to use two-way binding -->
+          <input
+            type="email"
+            id="email"
+            name="email"
+           [(ngModel).]="email"
+            placeholder="Email"
+            required
+          />
+          <i class="fas fa-envelope input-icon"></i>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-container">
+          <!-- Fix ngModel to use two-way binding -->
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            required
+          />
+          <i class="fas fa-lock input-icon"></i>
+        </div>
+      </div>
+      <!-- NE9ssin houni les 3 link  BI SI NEKHDEM  BECH NAAML FONCTION EN CONSIDERATION DES ROLES -->
+      <button type="submit" class="sign-in-btn" [disabled]="!email || !password">
+        Sign In
+      </button>
+      
+    </form>
+  
+    <!-- <a routerLink="" class="signup-link">Sign up</a> -->
+  </div>
+</div>

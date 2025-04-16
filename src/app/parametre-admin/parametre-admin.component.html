@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+    :root {
+        --primary-color: #24838d;
+        --secondary-color: #379aa5;
+        --text-color: #000;
+        --bg-color: #fff;
+        --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --border-color: #24838d;
+        --completed-color: #0d9488;
+        --pending-color: #0d9488;
+        --employees-color: #0d9488;
+        --tasks-color: #0d9488;
+        --white: #100e0e;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        overflow-x: hidden;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+    /* Sidebar Styles */
+    .sidebar {
+        width: 350px;
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 41px 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .admin-profile {
+        display: flex;
+        align-items: center;
+        margin-left: 40px;
+        gap: 15px;
+    }
+    
+    .admin-avatar {
+        font-size: 35px;
+        color: var(--text-color);
+    }
+    
+    .admin-text {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .separator {
+        width: 217px;
+        height: 4px;
+        background-color: black;
+        margin: 4px 0 10px 45px;
+    }
+    
+    
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-top: 20px;
+    }
+    
+    .nav-item {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        padding: 15px;
+        gap: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 24px;
+    }
+    
+   .nav-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        width: 300px;
+    }
+    
+    .nav-item i {
+        font-size: 32px;
+        color: var(--text-color);
+    }
+    
+    .nav-item span {
+        font-size: 24px;
+    }
+    /* Suppression des soulignements et styles des liens */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Correction des couleurs pour le thème sombre */
+.sidebar .nav-item i,
+.sidebar .nav-item span,
+.sidebar .admin-avatar,
+.sidebar .admin-text,
+.sidebar .account-section,
+.sidebar .logout-section,
+.sidebar .logout-section i {
+    color: var(--white);
+}
+
+/* Style cohérent pour tous les nav-items */
+.nav-item {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    padding: 15px;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 24px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+/* Style pour les liens de footer */
+.footer-links a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* Style pour le bouton de paramètres */
+.settings-button {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+    .account-section {
+        margin: 60px 0 0 40px;
+        font-size: 24px;
+    }
+    
+    .logout-section {
+        display: flex;
+        align-items: center;
+        margin: 30px 0 0 40px;
+        gap: 15px;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        font-size: 24px;
+    }
+    
+    .logout-section:hover {
+        opacity: 0.8;
+    }
+    
+    .logout-section i {
+        font-size: 30px;
+        color: var(--text-color);
+    }
+    
+    .settings-button {
+        width: 200px;
+        height: 45px;
+        margin: 70px 0 0 60px;
+        background-color: var(--secondary-color);
+        border: none;
+        border-radius: 45px;
+        font-size: 22px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: rgb(9, 9, 9);
+        text-decoration: none;
+    }
+    
+    .settings-button:hover {
+        background-color: #2d7d86;
+        color: white;
+    }
+    
+    .settings-button i {
+        font-size: 16px;
+        color: white;
+    }
+    
+    /* Main Content Styles */
+    .main-content {
+        flex: 1;
+        padding: 24px;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    
+    .header h1 {
+        font-size: 30px;
+    }
+    
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .search-box {
+        width: 196px;
+        height: 36px;
+        background-color: #e9ecef;
+        position: relative;
+        border-radius: 4px;
+    }
+    
+    .search-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        padding: 0 35px 0 10px;
+        color: #495057;
+        font-size: 14px;
+    }
+    
+    .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #495057;
+        font-size: 14px;
+    }
+    
+    .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .header-icons i {
+        font-size: 18px;
+        cursor: pointer;
+        color: var(--text-color);
+    }
+    
+    .header-icons span {
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    
+    .header-icons span:hover {
+        opacity: 0.8;
+    }
+    
+    .password-section {
+        max-width: 800px;
+        margin: 50px 0 0 0;
+    }
+    
+    .password-section h2 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+    
+    .password-form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-group label {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .form-group input {
+        width: 100%;
+        max-width: 600px;
+        height: 45px;
+        background-color: #e9ecef;
+        border: none;
+        border-radius: 4px;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+    
+    .change-btn {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        padding: 15px 40px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+        align-self: flex-start;
+        margin-top: 20px;
+        text-transform: uppercase;
+    }
+    
+    .change-btn:hover {
+        background-color: #1c6c73;
+    }
+    
+    .footer {
+        margin-top: 120px;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .footer-text {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .footer-links {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .footer-links a {
+        text-decoration: none;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .footer-links a:hover {
+        color: var(--primary-color);
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Admin profile -->
+            <div class="admin-profile">
+                <i class="fas fa-user-circle admin-avatar"></i>
+                <span class="admin-text">Admin</span>
+            </div>
+            
+            <div class="separator"></div>
+
+            <!-- Navigation -->
+           <!-- Navigation -->
+<nav class="nav-menu">
+    <div class="nav-item" data-page="accueil">
+        <a href="#" class="nav-link">
+            <i class="fas fa-home"></i>
+            <span>Accueil,</span>
+        </a>
+    </div>
+    <div class="nav-item active" data-page="tableau-de-bord">
+        <a href="../admin_tableau_de_bord/admin.component.html" class="nav-link">
+            <i class="fas fa-chart-bar"></i>
+            <span>Tableau de bord</span>
+        </a>
+    </div>
+    <div class="nav-item" data-page="gerer-taches">
+        <a href="../admin-ancien-taches/admin-ancien-taches.component.html" class="nav-link">
+            <i class="fas fa-tasks"></i>
+            <span>Gérer les tâches</span>
+        </a>
+    </div>
+</nav>
+
+            <!-- Account section -->
+            <div class="account-section">
+                <span>ACCOUNT PAGES</span>
+            </div>
+
+            <!-- Logout --> 
+            <div class="logout-section" role="button" tabindex="0" onclick="window.location.href='../pages/login/login.component.html'">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Se déconnecter</span>
+            </div>
+
+            <!-- Settings -->
+            <a href="../parametre-admin/parametre-admin.component.html" class="settings-button">
+                <i class="fas fa-cog"></i>
+                Paramètre
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Profile</h1>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="écrire...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="header-icons">
+                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-bell"></i>
+                        <i class="fas fa-arrow-right"></i>
+                        <span role="button" tabindex="0" onclick="window.location.href='../pages/login/login.component.html'">
+                            Se déconnecter
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Password Section -->
+            <section class="password-section">
+                <h2>Changer votre mot de passe</h2>
+                <form action="#" class="password-form">
+                    <div class="form-group">
+                        <label for="current-password">Ancien mot de passe:</label>
+                        <input type="password" id="current-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Nouveau mot de passe:</label>
+                        <input type="password" id="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Répéter le nouveau mot de passe:</label>
+                        <input type="password" id="confirm-password">
+                    </div>
+                    <button type="submit" class="change-btn">Changer</button>
+                </form>
+            </section>
+            
+            <div class="footer">
+                <div class="footer-text">
+                    Réalisé avec ❤️ par équipe TASKLY pour une meilleure gestion des taches.
+                </div>
+                <div class="footer-links">
+                    <a href="../accueil/accueil.component.html">Accueil,</a>
+                    <a href="../propos/propos.component.html">A propos</a>
+                    <a href="../service/service.component.html">Services</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
